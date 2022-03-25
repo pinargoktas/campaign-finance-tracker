@@ -19,9 +19,9 @@ def health():
 
 @app.route('/data_puller')
 def data_puller():
-    url = os.environ[${URL}]
-    bucket_name = os.environ[${BUCKET}] #without gs://
-    file_name = os.environ[${FILE_NAME}]
+    url = os.environ[${_URL}]
+    bucket_name = os.environ[${_BUCKET}] #without gs://
+    file_name = os.environ[${_FILE_NAME}]
    	client = storage.Client($PROJECT_ID)
     cf_path = '/tmp/{}'.format(file_name)
 
@@ -35,9 +35,9 @@ def data_puller():
 @app.route('/unzipper')
 def unzipper():
     storage_client = storage.Client($PROJECT_ID)
-    bucket = storage_client.get_bucket(${BUCKET})
+    bucket = storage_client.get_bucket(${_BUCKET})
 
-    destination_blob_pathname = ${FILE_NAME}
+    destination_blob_pathname = ${_FILE_NAME}
         
     blob = bucket.blob(destination_blob_pathname)
     zipbytes = io.BytesIO(blob.download_as_string())
@@ -51,13 +51,13 @@ def unzipper():
              
 @app.route('/txt2csv')
 def txt2csv():
-    fileName = ${FILE_NAME}
-    if ${FILE_NAME}[:-3] == '.txt'
+    fileName = ${_FILE_NAME}
+    if ${_FILE_NAME}[:-3] == '.txt'
         df = pd.read_csv(fileName, sep=",")
 
         storage_client = storage.Client($PROJECT_ID)
-        bucket = client.get_bucket(${BUCKET})
-        blob = bucket.blob(${FILE_NAME})
+        bucket = client.get_bucket(${_BUCKET})
+        blob = bucket.blob(${_FILE_NAME})
  	    blob.upload_from_string(df.to_csv(), 'text/csv')
 
     
