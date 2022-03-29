@@ -1,5 +1,4 @@
 import logger
-import os
 from zipfile38 import ZipFile
 from zipfile38 import is_zipfile
 import zipfile38
