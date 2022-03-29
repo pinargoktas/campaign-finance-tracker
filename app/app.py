@@ -19,25 +19,25 @@ def health():
 
 @app.route('/data_puller')
 def data_puller():
-    url = os.environ[${_URL}]
-    bucket_name = os.environ[${_BUCKET}] #without gs://
-    file_name = os.environ[${_FILE_NAME}]
-   	client = storage.Client($PROJECT_ID)
+    url = os.environ.get['URL']
+    bucket_name = os.environ.get['BUCKET'] #without gs://
+    file_name = os.environ.get['FILE_NAME']
+    client = storage.Client($PROJECT_ID)
     cf_path = '/tmp/{}'.format(file_name)
 
-	bucket = client.get_bucket(bucket_name)
-	wget.download(url, cf_path)
-	blob = storage.Blob(file_name, bucket)
- 	blob.upload_from_filename(cf_path)
+    bucket = client.get_bucket(bucket_name)
+    wget.download(url, cf_path)
+    blob = storage.Blob(file_name, bucket)
+    blob.upload_from_filename(cf_path)
 
-	print("""This Function was triggered by messageId published at""")
+    print("""This Function was triggered by messageId published at""")
     
 @app.route('/unzipper')
 def unzipper():
     storage_client = storage.Client($PROJECT_ID)
-    bucket = storage_client.get_bucket(${_BUCKET})
+    bucket = storage_client.get_bucket(os.environ.get['BUCKET'])
 
-    destination_blob_pathname = ${_FILE_NAME}
+    destination_blob_pathname = os.environ.get['FILE_NAME']
         
     blob = bucket.blob(destination_blob_pathname)
     zipbytes = io.BytesIO(blob.download_as_string())
