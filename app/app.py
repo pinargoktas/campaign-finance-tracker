@@ -49,17 +49,3 @@ def unzipper():
                 blob = bucket.blob(zipfilename_with_path + "/" + contentfilename)
                 blob.upload_from_string(contentfile)
              
-@app.route('/txt2csv')
-def txt2csv():
-    fileName = ${_FILE_NAME}
-    if ${_FILE_NAME}[:-3] == '.txt'
-        df = pd.read_csv(fileName, sep=",")
-
-        storage_client = storage.Client($PROJECT_ID)
-        bucket = client.get_bucket(${_BUCKET})
-        blob = bucket.blob(${_FILE_NAME})
- 	    blob.upload_from_string(df.to_csv(), 'text/csv')
-
-    
-if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
