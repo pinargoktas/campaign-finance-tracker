@@ -5,4 +5,3 @@ zipfile38
 google-cloud-storage
 wget
 pandas
-os
