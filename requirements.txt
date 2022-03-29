@@ -1,5 +1,6 @@
 Flask
-os
+gunicorn
+logger
 zipfile38 
 google-cloud-storage
 wget
