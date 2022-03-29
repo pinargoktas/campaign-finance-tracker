@@ -1,7 +1,7 @@
 from functools import wraps
 from flask import request, abort
 import hashlib
-import os
+#import os
 
 
 def require_apikey(view_function):
