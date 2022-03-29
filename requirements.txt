@@ -1,5 +1,4 @@
 Flask
-gunicorn
 os
 zipfile38 
 google-cloud-storage
