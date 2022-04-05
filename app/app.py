@@ -11,6 +11,7 @@ from flask import Flask
 from secure import require_apikey
 
 
+application = app
 app = Flask(__name__)
 
 
@@ -18,5 +19,6 @@ app = Flask(__name__)
 def health():
     return 'It is alive!\n'
 
-#if __name__ == "__main__":
-app.run(debug=True, host='0.0.0.0', port=int(os.environ.get($PORT)))
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get($PORT)))
+
