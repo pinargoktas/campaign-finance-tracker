@@ -11,14 +11,13 @@ from flask import Flask
 from secure import require_apikey
 
 
-application = app
-app = Flask(__name__)
+application = Flask(__name__)
 
 
-@app.route('/health')
+@application.route('/health')
 def health():
     return 'It is alive!\n'
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get($PORT)))
+    application.run(debug=True, host='0.0.0.0', port=int(os.environ.get($PORT)))
 
